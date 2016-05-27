@@ -1,0 +1,157 @@
+#N canvas 565 134 450 300 10;
+#N canvas 25 323 362 116 samplebanks 1;
+#X obj 46 34 u_samplebank2 sample-1 audio/sample-1.wav;
+#X obj 46 54 u_samplebank2 sample-2 audio/sample-2.wav;
+#X restore 33 84 pd samplebanks;
+#N canvas 288 185 920 597 osc 0;
+#X obj 74 11 dumpOSC 9000;
+#X obj 93 157 s A-bass-on;
+#X obj 282 177 s A-uke-on;
+#X obj 219 157 s A-synths-on;
+#X obj 156 177 s A-perc-on;
+#X obj 93 255 s to-section-A;
+#X obj 179 276 s to-section-B;
+#X obj 265 256 s to-section-C;
+#X obj 83 382 s fx-delay-on;
+#X obj 133 402 s fx-delay-param;
+#X obj 289 382 s fx-filter-on;
+#X obj 355 402 s fx-filter-param;
+#X obj 73 434 OSCroute /solo-synth-on /solo-synth-pitch /solo-synth-repeat
+;
+#X obj 73 472 s solo-synth-on;
+#X obj 311 472 s solo-synth-repeat;
+#X obj 556 39 r A-bass-playing;
+#X msg 556 61 send /A-bass-playing \$1;
+#X obj 566 89 r A-synths-playing;
+#X obj 726 39 r A-perc-playing;
+#X obj 736 89 r A-uke-playing;
+#X msg 566 111 send /A-synths-playing \$1;
+#X msg 726 61 send /A-perc-playing \$1;
+#X msg 736 111 send /A-uke-playing \$1;
+#X msg 580 205 send /B-full-main-playing \$1;
+#X msg 590 255 send /C-full-main-playing \$1;
+#X obj 616 355 loadbang;
+#X obj 616 377 t b b;
+#X msg 643 421 disconnect;
+#X obj 7 81 print OSC;
+#X msg 715 316 send /blah 1;
+#X obj 102 94 s A-section-all-off;
+#X obj 228 94 s A-kick-on;
+#X obj 510 480 print localOSC;
+#X obj 580 183 r B1-full-main-playing;
+#X obj 590 233 r C-full-main-playing;
+#X obj 308 94 s reset-all;
+#X obj 709 360 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 388 94 s build-up-intensity;
+#X obj 102 67 OSCroute /A-reset /A-kick-on /reset-all /build-up-param
+;
+#X obj 613 143 r A-playing;
+#X msg 613 165 send /A-playing \$1;
+#X obj 192 502 s solo-synth-pitch;
+#X obj 192 472 * 20;
+#X msg 576 153 1;
+#X obj 351 276 s to-end;
+#X obj 93 234 OSCroute /to-section-A /to-section-B /to-section-C /to-end
+;
+#X obj 788 179 r bar-count;
+#X msg 788 201 send /bar-count \$1;
+#X msg 616 399 connect 127.0.0.1 8888;
+#X obj 556 453 sendOSC;
+#X obj 83 344 OSCroute /fx-delay-on /fx-delay-param /fx-repeater-on
+/fx-repeater-param /fx-filter-on /fx-filter-param;
+#X obj 237 402 s fx-repeater-param;
+#X obj 186 382 s fx-repeater-on;
+#X obj 93 124 OSCroute /A-bass-on /A-perc-on /A-synths-on /A-uke-on
+/A-vox-on;
+#X obj 345 157 s A-vox-on;
+#X obj 197 326 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 239 322 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 223 218 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 153 214 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 384 43 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 282 212 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 95 301 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 137 297 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 313 299 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 355 295 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X connect 0 0 12 0;
+#X connect 0 0 28 0;
+#X connect 0 0 38 0;
+#X connect 0 0 45 0;
+#X connect 0 0 50 0;
+#X connect 0 0 53 0;
+#X connect 12 0 13 0;
+#X connect 12 1 42 0;
+#X connect 12 2 14 0;
+#X connect 15 0 16 0;
+#X connect 16 0 32 0;
+#X connect 16 0 49 0;
+#X connect 17 0 20 0;
+#X connect 18 0 21 0;
+#X connect 19 0 22 0;
+#X connect 20 0 32 0;
+#X connect 20 0 49 0;
+#X connect 21 0 32 0;
+#X connect 21 0 49 0;
+#X connect 22 0 32 0;
+#X connect 22 0 49 0;
+#X connect 23 0 32 0;
+#X connect 23 0 49 0;
+#X connect 24 0 32 0;
+#X connect 24 0 49 0;
+#X connect 25 0 26 0;
+#X connect 26 0 48 0;
+#X connect 26 1 27 0;
+#X connect 27 0 49 0;
+#X connect 29 0 49 0;
+#X connect 33 0 23 0;
+#X connect 34 0 24 0;
+#X connect 36 0 26 0;
+#X connect 38 0 30 0;
+#X connect 38 1 31 0;
+#X connect 38 2 35 0;
+#X connect 38 3 37 0;
+#X connect 39 0 40 0;
+#X connect 40 0 32 0;
+#X connect 40 0 49 0;
+#X connect 42 0 41 0;
+#X connect 45 0 5 0;
+#X connect 45 1 6 0;
+#X connect 45 2 7 0;
+#X connect 45 3 44 0;
+#X connect 46 0 47 0;
+#X connect 47 0 49 0;
+#X connect 48 0 49 0;
+#X connect 50 0 8 0;
+#X connect 50 1 9 0;
+#X connect 50 2 52 0;
+#X connect 50 3 51 0;
+#X connect 50 4 10 0;
+#X connect 50 5 11 0;
+#X connect 53 0 1 0;
+#X connect 53 1 4 0;
+#X connect 53 2 3 0;
+#X connect 53 3 2 0;
+#X connect 53 4 54 0;
+#X connect 55 0 52 0;
+#X connect 56 0 51 0;
+#X connect 57 0 6 0;
+#X connect 58 0 5 0;
+#X connect 59 0 37 0;
+#X connect 60 0 7 0;
+#X connect 61 0 8 0;
+#X connect 62 0 9 0;
+#X connect 63 0 10 0;
+#X connect 64 0 11 0;
+#X restore 185 32 pd osc;
