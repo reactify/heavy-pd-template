@@ -69,15 +69,14 @@
 #X connect 1 0 0 0;
 #X connect 2 0 0 1;
 #X restore 47 181 pd io ======;
-#N canvas 767 177 454 159 loops 0;
+#N canvas 767 177 454 159 loops 1;
 #X obj 325 92 outlet~ RIGHT;
 #X obj 46 92 outlet~ LEFT;
-#X obj 46 44 loop-player sample-1 sample-1-1 sample-1-2 32 1;
-#X obj 56 64 loop-player sample-2 sample-2-1 sample-2-2 32 1;
+#X obj 56 64 loop-player sample-2 sample-2-1 sample-2-2 32;
+#X obj 46 44 loop-player-mono sample-1 sample-1 32;
 #X connect 2 0 1 0;
 #X connect 2 1 0 0;
 #X connect 3 0 1 0;
-#X connect 3 1 0 0;
 #X restore 47 150 pd loops;
 #X obj 169 71 r exposed-param @hv_param 0 1 0;
 #X connect 3 0 2 0;
